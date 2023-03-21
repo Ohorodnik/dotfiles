@@ -6,7 +6,6 @@ general {
 
 order += "disk /"
 order += "battery 0"
-order += "memory"
 order += "load"
 order += "tztime local"
 
@@ -29,12 +28,6 @@ tztime local {
 
 load {
         format = "%1min"
-}
-
-memory {
-        format = "%used"
-        threshold_degraded = "10%"
-        format_degraded = "MEMORY: %free"
 }
 
 disk "/" {

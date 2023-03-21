@@ -188,3 +188,4 @@ bar {
 # autostart apps
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id 1password
+exec --no-startup-id systemctl --user start docker-desktop
