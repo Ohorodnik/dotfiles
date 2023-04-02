@@ -1,0 +1,2 @@
+require("ohorodnik")
+print("hello")
