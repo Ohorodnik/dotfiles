@@ -89,4 +89,5 @@ return require('packer').startup(function(use)
 
     use "kiyoon/treesitter-indent-object.nvim"
 
+    use "github/copilot.vim"
 end)
