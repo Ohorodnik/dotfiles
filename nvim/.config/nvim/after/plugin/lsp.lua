@@ -27,7 +27,6 @@ lsp.ensure_installed({
   'dockerls',
   'html',
   'jsonls',
-  'jdtls',
   'sqlls',
   'jedi_language_server',
   'volar'

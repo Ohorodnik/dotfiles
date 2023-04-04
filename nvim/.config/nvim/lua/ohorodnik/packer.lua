@@ -70,14 +70,6 @@ return require('packer').startup(function(use)
     use "RRethy/vim-illuminate"
 
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-        config = function()
-            require('lualine').setup()
-        end
-    }
-
-    use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
@@ -90,4 +82,11 @@ return require('packer').startup(function(use)
     use "kiyoon/treesitter-indent-object.nvim"
 
     use "github/copilot.vim"
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    }
+
+    use "lewis6991/gitsigns.nvim"
 end)
