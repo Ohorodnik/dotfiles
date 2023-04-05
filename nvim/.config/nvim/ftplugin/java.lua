@@ -1,7 +1,8 @@
 local root_markers = { 'gradlew', '.git' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
-local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
+local mason_dir = home .. "/.local/share/nvim/mason/packages"
+local jdtls_dir = mason_dir .. "/jdtls"
 local eclipse_folder = home .. "/.local/share/eclipse";
 local workspace_folder = eclipse_folder .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 local config = {
@@ -85,9 +86,19 @@ local config = {
   --
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
-    bundles = {}
+    bundles = {
+      vim.fn.glob(mason_dir .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+    }
   },
 }
+
+config['on_attach'] = function(client, bufnr)
+  -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+  -- you make during a debug session immediately.
+  -- Remove the option if you do not want that.
+  -- You can use the `JdtHotcodeReplace` command to trigger it manually
+  require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+end
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
