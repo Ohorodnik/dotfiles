@@ -1,8 +1,9 @@
-local root_markers = {'gradlew', '.git'}
+local root_markers = { 'gradlew', '.git' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
 local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
-local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local eclipse_folder = home .. "/.local/share/eclipse";
+local workspace_folder = eclipse_folder .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 local config = {
   cmd = {
     home .. "/.sdkman/candidates/java/17.0.6-amzn/bin/java", -- or '/path/to/java17_or_newer/bin/java'
@@ -24,15 +25,13 @@ local config = {
 
     '-data', workspace_folder
   },
-
   root_dir = root_dir,
-
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
   settings = {
     java = {
       home = home .. "/.sdkman/candidates/java/17.0.6-amzn",
-      signatureHelp = { enabled = true };
+      signatureHelp = { enabled = true },
       eclipse = {
         downloadSources = true,
       },
@@ -48,21 +47,36 @@ local config = {
           },
         }
       },
-    sources = {
-      organizeImports = {
-        starThreshold = 9999;
-        staticStarThreshold = 9999;
+      implementationsCodeLens = {
+        enabled = true,
       },
-    },
-    codeGeneration = {
-      toString = {
-        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+      referencesCodeLens = {
+        enabled = true,
       },
-      useBlocks = true,
+      references = {
+        includeDecompiledSources = true,
+      },
+      format = {
+        enabled = true,
+        settings = {
+          url = eclipse_folder .. "/eclipse-java-google-style.xml ",
+          profile = "GoogleStyle",
+        },
+      },
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        },
+      },
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+        },
+        useBlocks = true,
+      },
     },
   },
-},
-
   -- Language server `initializationOptions`
   -- You need to extend the `bundles` with paths to jar files
   -- if you want to use additional eclipse.jdt.ls plugins.
