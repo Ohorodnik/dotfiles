@@ -49,7 +49,7 @@ lsp.ensure_installed({
   'html',
   'jsonls',
   'sqlls',
-  'jedi_language_server',
+  'pyright',
   'volar'
 })
 

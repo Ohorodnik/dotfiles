@@ -28,3 +28,6 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+vim.opt.spelloptions = "camel"
