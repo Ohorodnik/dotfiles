@@ -95,6 +95,9 @@ local config = {
             quit_on_open = false
         }
     },
+    git = {
+        ignore = false,
+    }
 }
 
 vim.api.nvim_set_keymap("n", "<leader>pv", ":NvimTreeToggle<cr>",

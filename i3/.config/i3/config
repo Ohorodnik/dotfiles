@@ -310,6 +310,8 @@ workspace $ws5 output HDMI-A-0
 # bind program to workspace and focus to them on startup:
 assign [class="Xfce4-terminal"] $ws3
 assign [class="(?i)brave"] $ws2
+assign [class="(?i)teams"] $ws8
+assign [class="(?i)slack"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Xfce4-terminal] focus

@@ -104,4 +104,6 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {'neoclide/coc.nvim', branch = 'release'}
+
 end)
