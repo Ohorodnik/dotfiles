@@ -106,4 +106,8 @@ return require('packer').startup(function(use)
 
     use {'neoclide/coc.nvim', branch = 'release'}
 
+    use 'ryanoasis/vim-devicons'
+
+    use 'jose-elias-alvarez/null-ls.nvim'
+
 end)
