@@ -1,8 +1,21 @@
 local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
+local nvim_lsp = require('lspconfig')
 
-require('lspconfig')['hls'].setup {
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
+nvim_lsp.denols.setup{
+  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+}
+nvim_lsp.tsserver.setup {
+  root_dir = nvim_lsp.util.root_pattern("package.json"),
+  single_file_support = false
+}
+
+nvim_lsp['hls'].setup {
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
