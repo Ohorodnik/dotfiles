@@ -9,24 +9,13 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use {
-        'folke/tokyonight.nvim',
-        config = function()
-            vim.cmd("colorscheme tokyonight")
-        end
-    }
-
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
     use({
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
     })
 
     use 'mbbill/undotree'
@@ -59,26 +48,15 @@ return require('packer').startup(function(use)
 
     use "windwp/nvim-ts-autotag"
 
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
+    use 'numToStr/Comment.nvim'
 
-    use("theprimeagen/harpoon")
+    use "theprimeagen/harpoon"
 
     use "RRethy/vim-illuminate"
 
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
+    use "windwp/nvim-autopairs"
 
-    use {
-        'nmac427/guess-indent.nvim',
-        config = function() require('guess-indent').setup {} end,
-    }
+    use 'nmac427/guess-indent.nvim'
 
     use "kiyoon/treesitter-indent-object.nvim"
 
@@ -108,5 +86,5 @@ return require('packer').startup(function(use)
 
     use 'jose-elias-alvarez/null-ls.nvim'
 
-    use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+    use 'simrat39/rust-tools.nvim'
 end)

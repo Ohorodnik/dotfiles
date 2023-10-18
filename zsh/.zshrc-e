@@ -105,6 +105,7 @@ export VI_MODE_SET_CURSOR=true
 
 # Docker rootles
 export PATH=/home/ohorodnik/bin:$PATH
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -125,5 +126,3 @@ if [ -f '/Users/vitaliiohorodnik/Downloads/google-cloud-sdk/path.zsh.inc' ]; the
 if [ -f '/Users/vitaliiohorodnik/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vitaliiohorodnik/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f "/Users/vitaliiohorodnik/.ghcup/env" ] && source "/Users/vitaliiohorodnik/.ghcup/env" # ghcup-env
