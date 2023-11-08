@@ -20,10 +20,14 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { de
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer" })
 vim.keymap.set("v", "<leader>f", '<cmd>lua vim.lsp.buf.format()<CR>', { desc = "Format selection" })
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next error" })
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous error" })
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next warning" })
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous warning" })
+vim.keymap.set('n', '[e', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Go to previous error" })
+vim.keymap.set('n', ']e', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Go to next error" })
+vim.keymap.set('n', '[w', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN }) end, { desc = "Go to previous warning" })
+vim.keymap.set('n', ']w', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end, { desc = "Go to next warning" })
+vim.keymap.set('n', '[i', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.INFO }) end, { desc = "Go to previous info" })
+vim.keymap.set('n', ']i', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.INFO }) end, { desc = "Go to next info" })
+vim.keymap.set('n', '[h', function () vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.HINT }) end, { desc = "Go to previous hint" })
+vim.keymap.set('n', ']h', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.HINT }) end, { desc = "Go to next hint" })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }, { desc = "Make file executable" })
