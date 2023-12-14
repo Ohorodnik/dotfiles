@@ -2,14 +2,16 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 local nvim_lsp = require('lspconfig')
+local util = require 'lspconfig.util'
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript"
 }
 
-nvim_lsp.denols.setup{
+nvim_lsp.denols.setup {
   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 }
+
 nvim_lsp.tsserver.setup {
   root_dir = nvim_lsp.util.root_pattern("package.json"),
   single_file_support = false
@@ -18,6 +20,8 @@ nvim_lsp.tsserver.setup {
 nvim_lsp['hls'].setup {
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
+
+nvim_lsp.lua_ls.setup(lsp.nvim_lua_ls())
 
 cmp.setup({
   mapping = {
@@ -54,7 +58,8 @@ lsp.on_attach(function(client, bufnr)
     { noremap = true, silent = true, desc = "List workspace folders" })
   buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>',
     { noremap = true, silent = true, desc = "Go to type definition" })
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true, desc = "Rename" })
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>',
+    { noremap = true, silent = true, desc = "Rename" })
   buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
     { noremap = true, silent = true, desc = "Code action" })
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>',
@@ -63,23 +68,24 @@ lsp.on_attach(function(client, bufnr)
     { noremap = true, silent = true, desc = "Show line diagnostics" })
 end)
 
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.ensure_installed({
-  -- Replace these with whatever servers you want to install
-  'tsserver',
-  'eslint',
-  'angularls',
-  'cssls',
-  'docker_compose_language_service',
-  'dockerls',
-  'html',
-  'jsonls',
-  'sqlls',
-  'pyright',
-  'volar'
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'tsserver',
+    'eslint',
+    'angularls',
+    'cssls',
+    'docker_compose_language_service',
+    'dockerls',
+    'html',
+    'jsonls',
+    'sqlls',
+    'pyright',
+    'volar',
+  },
+  handlers = {
+    lsp.default_setup,
+  },
 })
-
 
 lsp.setup()
