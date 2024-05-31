@@ -41,8 +41,6 @@ return require('packer').startup(function(use)
 
     use "lukas-reineke/indent-blankline.nvim"
 
-    use "windwp/nvim-ts-autotag"
-
     use "RRethy/vim-illuminate"
 
     use "windwp/nvim-autopairs"
