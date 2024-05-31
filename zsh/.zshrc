@@ -101,7 +101,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export VI_MODE_SET_CURSOR=true
+export VI_MODE_SET_CURSOR=false
 
 # Docker rootles
 export PATH=/home/ohorodnik/bin:$PATH
@@ -127,3 +127,6 @@ if [ -f '/Users/vitaliiohorodnik/Downloads/google-cloud-sdk/completion.zsh.inc' 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f "/Users/vitaliiohorodnik/.ghcup/env" ] && source "/Users/vitaliiohorodnik/.ghcup/env" # ghcup-env
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
