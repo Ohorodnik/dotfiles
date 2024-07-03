@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 local highlight = {
     "RainbowRed",
     "RainbowYellow",

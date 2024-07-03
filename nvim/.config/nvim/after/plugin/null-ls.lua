@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 local null_ls = require("null-ls")
 
 null_ls.setup({

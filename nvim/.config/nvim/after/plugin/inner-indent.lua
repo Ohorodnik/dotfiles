@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 -- select context-aware indent
 vim.keymap.set({"x", "o"}, "ai", "<Cmd>lua require'treesitter_indent_object.textobj'.select_indent_outer()<CR>", { desc = "Select outer indent" })
 -- ensure selecting entire line (or just use Vai)

@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 require('gitsigns').setup {
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns

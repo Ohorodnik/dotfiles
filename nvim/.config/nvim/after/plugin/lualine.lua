@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,

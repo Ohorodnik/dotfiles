@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 require("which-key").setup {

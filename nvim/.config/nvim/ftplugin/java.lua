@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 local root_markers = { 'gradlew', '.git' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
 local home = os.getenv('HOME')
