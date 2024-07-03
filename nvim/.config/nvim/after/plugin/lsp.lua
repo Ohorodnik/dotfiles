@@ -2,7 +2,6 @@ local lsp = require('lsp-zero').preset({})
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 local nvim_lsp = require('lspconfig')
-local util = require 'lspconfig.util'
 
 vim.g.markdown_fenced_languages = {
   "ts=typescript"

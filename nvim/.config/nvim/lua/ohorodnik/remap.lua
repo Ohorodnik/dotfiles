@@ -30,6 +30,6 @@ vim.keymap.set('n', '[h', function () vim.diagnostic.goto_prev({ severity = vim.
 vim.keymap.set('n', ']h', function () vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.HINT }) end, { desc = "Go to next hint" })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace" })
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true }, { desc = "Make file executable" })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make file executable", silent = true })
 
 vim.keymap.set("n", "<leader>pv", nvim_tree_api.tree.toggle, { desc = "Open: New Tab" })
