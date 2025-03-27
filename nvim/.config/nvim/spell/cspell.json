@@ -1,9 +1,0 @@
-{
-    "version": "0.2",
-    "words": [
-        "ohorodnik"
-    ],
-    "flagWords": [],
-    "language": "en",
-    "ignorePaths": ["node_modules/**", "target/**", "dist/**", "build/**", "vendor/**", "out/**", "flow-typed/**", "spell.json"]
-}
