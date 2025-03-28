@@ -55,29 +55,6 @@ return {
   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
   { import = "lazyvim.plugins.extras.lang.typescript" },
 
-  -- add more treesitter parsers
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
-  },
-
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
   -- If you'd rather extend the default config, use the code below instead:
@@ -114,7 +91,6 @@ return {
       ensure_installed = {
         "cspell",
         "stylua",
-        "shfmt",
         "flake8",
         "prettier",
       },
@@ -140,13 +116,17 @@ return {
       ---@type table<string,table>
     },
   },
+
   {
     "snacks.nvim",
-    ---@type snacks.Config
     opts = {
       picker = {
-        hidden = true, -- for hidden files
-        ignored = true, -- for .gitignore files
+        sources = {
+          explorer = {
+            hidden = true, -- for hidden files
+            ignored = true, -- for .gitignore files
+          },
+        },
       },
     },
   },
