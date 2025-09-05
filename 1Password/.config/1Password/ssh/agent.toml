@@ -28,3 +28,5 @@
 #
 # More examples can be found here:
 #  https://developer.1password.com/docs/ssh/agent/config
+[[ssh-keys]]
+account = "https://my.1password.com/"

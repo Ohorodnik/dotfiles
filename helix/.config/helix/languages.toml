@@ -1,0 +1,44 @@
+[language-server.jinja-lsp]
+command = "jinja-lsp"
+config = { template_extensions = ["njk"] }
+timeout = 5
+
+[language-server.graphql]
+command = "graphql-lsp"
+args = ["server", "-m", "stream"]
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+"https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json" = "*/lazygit/config.yml"
+"/home/work/work/nix2/script/schema/aws-spec.schema.json" = "*/aws.yaml"
+"/home/work/work/nix2/script/schema/component-spec.schema.json" = "*/component.yaml"
+"/home/work/work/nix2/script/schema/dynamodb-action.schema.json" = "*/action/*/*.yaml"
+"/home/work/work/nix2/script/schema/formats-spec.schema.json" = "*/formats.yaml"
+"/home/work/work/nix2/script/schema/json-schema_draft-07.schema.json" = "*/*.schema.yaml"
+
+[[language]]
+name = "jinja"
+language-servers = ["jinja-lsp"]
+file-types = [{ glob = "*.njk" }]
+
+[[language]]
+name = "typescript"
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "csv"
+auto-format = false
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
