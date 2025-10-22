@@ -8,7 +8,9 @@ return {
   -- add tsserver and setup with typescript.nvim instead of lspconfig
   {
     "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
     opts = {
+      ---@type lspconfig.options
       servers = {
         vtsls = {
           settings = {
@@ -21,19 +23,39 @@ return {
             },
           },
         },
-        graphql = {
-          -- if installed via npm: `npm install -g @graphql/eslint-plugin-graphql graphql-language-service-cli`
-          cmd = { "graphql-lsp", "server", "--method", "stream" },
-          filetypes = { "graphql", "gql" },
-          root_dir = require("lspconfig.util").root_pattern(".graphqlrc.yaml"),
+        yamlls = {
+          -- Have to add this for yamlls to understand that we support line folding
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["./script/schema/aws-spec.schema.json"] = "*/aws.yaml",
+                ["./script/schema/component-spec.schema.json"] = "*/component.yaml",
+                ["./script/schema/dynamodb-action.schema.json"] = "*/action/*/*.yaml",
+                ["./script/schema/formats-spec.schema.json"] = "*/formats.yaml",
+                ["./script/schema/json-schema_draft-07.schema.json"] = "*/*.schema.yaml",
+                ["https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json"] = "*/lazygit/config.yml",
+              },
+            },
+          },
         },
       },
     },
   },
-
-  -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
-  -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
 
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
@@ -61,9 +83,6 @@ return {
       })
     end,
   },
-
-  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
 
   -- add any tools you want to have installed below
   {
