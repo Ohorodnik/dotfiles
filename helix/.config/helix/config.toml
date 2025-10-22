@@ -8,7 +8,6 @@ bufferline = "always"
 auto-format = false
 
 [editor.lsp]
-display-inlay-hints = true
 
 [editor.cursor-shape]
 insert = "bar"
