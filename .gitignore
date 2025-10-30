@@ -2,3 +2,8 @@
 /bin/.local/state
 keymapp
 known_hosts*
+
+/yazi/.config/yazi/flavors
+/yazi/.config/yazi/plugins
+
+*.pub
