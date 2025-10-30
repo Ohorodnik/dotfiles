@@ -33,6 +33,19 @@ return {
               },
             },
           },
+
+          -- lazy-load schemastore when needed
+          before_init = function(_, new_config)
+            new_config.settings.yaml.schemas = {
+              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+              ["./script/schema/aws-spec.schema.json"] = "**/nix2/**/aws.yaml",
+              ["./script/schema/component-spec.schema.json"] = "**/nix2/**/component.yaml",
+              ["./script/schema/dynamodb-action.schema.json"] = "**/nix2/**/action/*/*.yaml",
+              ["./script/schema/formats-spec.schema.json"] = "**/nix2/**/formats.yaml",
+              ["./script/schema/json-schema_draft-07.schema.json"] = "**/nix2/**/*.schema.yaml",
+              ["https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json"] = "*/lazygit/config.yml",
+            }
+          end,
           settings = {
             redhat = { telemetry = { enabled = false } },
             yaml = {
@@ -41,14 +54,12 @@ return {
                 enable = true,
               },
               validate = true,
-              schemas = {
-                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                ["./script/schema/aws-spec.schema.json"] = "*/aws.yaml",
-                ["./script/schema/component-spec.schema.json"] = "*/component.yaml",
-                ["./script/schema/dynamodb-action.schema.json"] = "*/action/*/*.yaml",
-                ["./script/schema/formats-spec.schema.json"] = "*/formats.yaml",
-                ["./script/schema/json-schema_draft-07.schema.json"] = "*/*.schema.yaml",
-                ["https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json"] = "*/lazygit/config.yml",
+              schemaStore = {
+                -- Must disable built-in schemaStore support to use
+                -- schemas from SchemaStore.nvim plugin
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
               },
             },
           },
