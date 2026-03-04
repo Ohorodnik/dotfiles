@@ -1,3 +1,5 @@
+/bin/.local/bin/*
+!/bin/.local/bin/tmux-sessionizer
 /bin/.local/share
 /bin/.local/state
 keymapp
