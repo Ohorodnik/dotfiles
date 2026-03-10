@@ -110,31 +110,38 @@ bindkey -s ^f "tmux-sessionizer\n"
 export PATH="$HOME/.local/bin:$PATH"
 bindkey -s ^f "tmux-sessionizer\n"
 
-export PATH="/opt/homebrew/bin/brew:$PATH"
+# export PATH="/opt/homebrew/bin/brew:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
-PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/bin/brew:/Users/vitaliiohorodnik/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"; export PATH;
-[ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+# export HOMEBREW_PREFIX="/opt/homebrew";
+# export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+# export HOMEBREW_REPOSITORY="/opt/homebrew";
+# PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/bin/brew:/Users/vitaliiohorodnik/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"; export PATH;
+# [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+# export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+# # fnm
+# FNM_PATH="/Users/vitaliiohorodnik/Library/Application Support/fnm"
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="/Users/vitaliiohorodnik/Library/Application Support/fnm:$PATH"
+#   eval "`fnm env`"
+# fi
+
+# eval "$(fnm env --use-on-cd --shell zsh)"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# fpath=(/Users/vitaliiohorodnik/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
+# End of Docker CLI completions
+# export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# fpath=(~/.stripe $fpath)
+# autoload -Uz compinit && compinit -i
 
 # fnm
-FNM_PATH="/Users/vitaliiohorodnik/Library/Application Support/fnm"
+FNM_PATH="/home/vitaliiohorodnik/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/Users/vitaliiohorodnik/Library/Application Support/fnm:$PATH"
-  eval "`fnm env`"
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
 fi
-
-eval "$(fnm env --use-on-cd --shell zsh)"
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/vitaliiohorodnik/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-
-fpath=(~/.stripe $fpath)
-autoload -Uz compinit && compinit -i
