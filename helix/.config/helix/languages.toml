@@ -45,3 +45,8 @@ auto-format = false
 name = "toml"
 formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
+
+[[language]]
+name = "c"
+language-servers = ["clangd", "codebook"]
+
